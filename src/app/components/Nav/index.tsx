@@ -84,7 +84,7 @@ const Nav:React.FC = memo(() => {
                 </div>
                 <FiGift size={33} className='cursor-pointer text-white ml-20'/>
                 <IoMdNotificationsOutline size={35} className='cursor-pointer text-white ml-20'/>
-                <button className='ml-20'><Image src='/images/profile_photo.png' alt='profile_photo' width={55} height={60}/></button>
+                <button className='ml-20'><Image src='/images/profileTakhmina.jpeg' alt='profile_photo' width={60} height={60} className='rounded-full h-14'/></button>
             </div>
         </nav>
     )
