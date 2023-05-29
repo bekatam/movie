@@ -2,7 +2,7 @@ import React from 'react'
 
 const Movies = () => {
   return (
-    <div>Movies</div>
+    <div>I Love Takhminishka</div>
   )
 }
 
