@@ -1,0 +1,19 @@
+.navbar {
+    background: linear-gradient(90.53deg, rgba(0, 0, 0, 0.75) 0.45%, rgba(102, 80, 165, 0.75) 105.51%);
+    box-shadow: 0px 4px 15px rgba(0, 0, 0, 0.25);
+    padding: 20px 32px 17px 25px;
+}
+
+.searchbar {
+    width: 324px;
+    background: #3B567D;
+    padding: 10px 25px;
+    border-radius: 18.5px;
+}
+
+.search {
+    width: 100%;
+    outline: none;
+    background: none;
+    border: none;
+}
