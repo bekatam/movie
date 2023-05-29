@@ -37,33 +37,34 @@ export default function Home() {
   useEffect(() => {
     const fetchData = async () => {
       let res = await getData();
-      const images = res.map(item => {
+      const images = res.map((item:any) => {
         return item.backdrop_path;
       })
-      const title = res.map(item => {
+      const title = res.map((item:any) => {
         return item.title;
       })
-      const description = res.map(item => {
+      const description = res.map((item:any) => {
         return item.overview;
       })
-      let year = res.map(item => {
+      let year = res.map((item:any) => {
         return item.release_date;
       })
-      const voteAverage = res.map(item => {
+      const voteAverage = res.map((item:any) => {
         return item.vote_average;
       })
-      year = year.map(item=>{
+      year = year.map((item:any)=>{
         let mov = item.split('-')
         return mov[0]
       })
-      const id = res.map(item=>{
+      const id = res.map((item:any)=>{
         return item.id
       })
+      random = Math.floor(Math.random() * images.length);
       let genres:any = await fetch(`https://api.themoviedb.org/3/movie/${id[random]}?language=en-US`, options)
       .then(response => response.json())
       .then(response => {
         response = response.genres;
-        let genres = response.map(item => {
+        let genres = response.map((item:any) => {
           return item.name
         })
         return genres;
