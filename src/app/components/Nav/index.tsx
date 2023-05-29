@@ -44,20 +44,21 @@ const Nav:React.FC = memo(() => {
     const [active_link, setActiveLink] = useState([...links]);
     const handleActiveLink = (id: string) => {
         const newLinks = links.map((link) => {
-            if (id === link.id) {
-              return {
-                ...link,
-                isActive: true
-              };
-            } else {
-              return {
-                ...link,
-                isActive: false
-              };
-            }
-          });
+          if (id === link.id) {
+            return {
+              ...link,
+              isActive: true
+            };
+          } else {
+            return {
+              ...link,
+              isActive: false
+            };
+          }
+        });
+      
         setActiveLink(newLinks);
-    };
+      };
 
     const handleLogoClick = () => {
         setActiveLink([...links]);
