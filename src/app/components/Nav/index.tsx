@@ -64,7 +64,7 @@ const Nav:React.FC = memo(() => {
         setActiveLink([...links]);
     }
     return (
-        <nav className='absolute z-10 w-full flex navbar justify-between items-center'>
+        <nav className='absolute w-full flex navbar justify-between items-center'>
             <div className="navbar__left flex items-center">
                 <Link href='/' className={griffy.className + ' uppercase text-4xl text-logo mr-10'} onClick={handleLogoClick}>Dramatic</Link>
                 {active_link.map((link, index) => (
@@ -85,7 +85,7 @@ const Nav:React.FC = memo(() => {
                 </div>
                 <FiGift size={33} className='cursor-pointer text-white ml-20'/>
                 <IoMdNotificationsOutline size={35} className='cursor-pointer text-white ml-20'/>
-                <button className='ml-20'><Image src='/images/profileTakhmina.jpeg' alt='profile_photo' width={60} height={60} className='rounded-full h-14'/></button>
+                <button className='ml-20'><Image src='/images/profile_photo.png' alt='profile_photo' width={60} height={60} className='rounded-full h-14'/></button>
             </div>
         </nav>
     )
