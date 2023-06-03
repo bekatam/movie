@@ -8,10 +8,7 @@ import Recommended from "./components/Recommended";
 
 const bebas = Bebas_Neue({ subsets: ["latin"], weight: "400" });
 
-
 export default function Home() {
-  const [main, setMain] = useState(true);
-  const handleMainClick = () => setMain(false);
 	const options = {
 		method: "GET",
 		headers: {
@@ -23,52 +20,51 @@ export default function Home() {
 	const [genres, setGenres] = useState<string[]>([]);
 	const [data, setData] = useState([
 		{
-			title: "",
-			overview: "",
-			vote_average: 0,
-			backdrop_path: "",
-			release_date: "0000",
-      		id: 0
+			id: 0,
 		},
 	]);
-	let random = Math.floor(Math.random() * data.length);
+
+	const [movie, setMovie] = useState();
 	useEffect(() => {
-    const getData = async () => {
-      const response = await fetch(
-        "https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
-        options
-      );
-      let data = await response.json();
-      data = data.results;
-      setData(data);
-      let genres: any = await fetch(
-        `https://api.themoviedb.org/3/movie/${data[random].id}?language=en-US`,
-        options
-      )
-      .then((response) => response.json())
-      .then((response) => {
-        response = response.genres;
-        let genres = response.map((item: any) => {
-          return item.name;
-        });
-        setGenres(genres);
-      });
-    };
-    getData()
+		const getData = async () => {
+			const response = await fetch(
+				"https://api.themoviedb.org/3/movie/popular?language=en-US&page=1",
+				options
+			);
+			let data = await response.json();
+			data = data.results;
+			setData([...data]);
+			let random = Math.floor(Math.random() * data.length);
+			setMovie(data[random]);
+			await fetch(
+				`https://api.themoviedb.org/3/movie/${data[random].id}?language=en-US`,
+				options
+			)
+			.then((response) => response.json())
+			.then((response) => {
+				response = response.genres;
+				let genres = response.map((item: any) => {
+					return item.name;
+				});
+				setGenres(genres);
+			});
+		};
+		getData();
 	}, []);
+
+	const { id } = data[0];
 
 	return (
 		<main className="">
-			{data[0].id !==0 ? (
-					<>
-						<MainInfo movie={data[random]} genres={genres} mainPage={false} handleMainClick = {handleMainClick}/>
-						<MustWatch bebas={bebas} />
-						<Recommended />
-					</>
-				) : (
-						<Loading bebas={bebas}/>
-				)
-			}
+			{id !== 0 ? (
+				<>
+					<MainInfo movie={movie} genres={genres} mainPage={false}/>
+					<MustWatch bebas={bebas} />
+					<Recommended />
+				</>
+			) : (
+				<Loading />
+			)}
 		</main>
 	);
 }
